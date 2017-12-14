@@ -24,12 +24,50 @@
 ---
 
 
+### thoughts...
+
+- `import` -- Most of the imports the students will use will either be built-in python packages, or packages installed by conda. But it might be useful for them to be aware that any code they create can become a package simply by adding to the directory an empty __init__.py file.
+
+- logging
+
+        import logging
+
+        logging.basicConfig(
+            # filename=LOG_PATH,
+            level=logging.DEBUG,
+            format='[%(asctime)s] %(levelname)s [%(module)s-%(funcName)s()::%(lineno)d] %(message)s',
+            datefmt='%d/%b/%Y %H:%M:%S' )
+        log = logging.getLogger(__name__)
+        log.debug( 'log configured' )
+
+- testing
+
+---
+
+
+### wordcount/basic.py ...
+
+- Purpose seems to be to...
+    - deal with passed-in arguments
+    - learn about dicts
+        - sorting by comparators -- even though the single example here doesn't fully invite grokking
+    - benefit of having manage-functions call worker-functions.
+
+- basic words and count...
+
+        python ./basic/solution/wordcount.py --count "/Users/birkin/Desktop/clps1950_stuff/CLPS1950_python/basic/alice.txt"
+
+- top count...
+
+        python ./basic/solution/wordcount.py --topcount "/Users/birkin/Desktop/clps1950_stuff/CLPS1950_python/basic/alice.txt"
+
+---
+
+
 ### copyspecial/copyspecial.py ...
 
 - Purpose seems to be to learn how to write a module that:
-    - captures passed-in arguments
-    - validates required arguments
-    - shows the user a usage statement if validation fails
+    - does the above argument stuff
     - passes the arguments to functions that do work
     - and also shows the built-in python 'commands' module -- though it should perhaps be noted there are different ways to do this.
 
