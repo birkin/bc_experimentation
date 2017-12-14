@@ -18,7 +18,8 @@ import logging, pprint
 logging.basicConfig(
     # filename=LOG_PATH,
     level=logging.DEBUG,
-    format='[%(asctime)s] %(levelname)s [%(module)s-%(funcName)s()::%(lineno)d] %(message)s', datefmt='%d/%b/%Y %H:%M:%S' )
+    format='[%(asctime)s] %(levelname)s [%(module)s-%(funcName)s()::%(lineno)d] %(message)s',
+    datefmt='%d/%b/%Y %H:%M:%S' )
 log = logging.getLogger(__name__)
 log.info( 'log configured' )
 
@@ -51,7 +52,7 @@ def get_special_paths(dirname):
 def copy_to(paths, to_dir):
   """Copy all of the given files to the given dir, creating it if necessary."""
   if not os.path.exists(to_dir):
-    os.mkdir(to_dir)  // arguably throw an exception instead
+    os.mkdir(to_dir)  # arguably throw an exception instead
   for path in paths:
     fname = os.path.basename(path)
     shutil.copy(path, os.path.join(to_dir, fname))
@@ -63,6 +64,7 @@ def zip_to(paths, zipfile):
   cmd = 'zip -j ' + zipfile + ' ' + ' '.join(paths)
   print "Command I'm going to do:" + cmd
   (status, output) = commands.getstatusoutput(cmd)
+  log.debug( 'status, `%s`; output, ```%s```' % (status, output) )
   # If command had a problem (status is non-zero),
   # print its output to stderr and exit.
   if status:
