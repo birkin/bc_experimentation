@@ -15,20 +15,33 @@ This script will introduce you to several concepts:
 
 """
 
+"""
+## (0) Python code formatting
+## Associated reading: https://medium.com/@hoffa/400-000-github-repositories-1-billion-files-14-terabytes-of-code-spaces-or-tabs-7cfe0b5dd7fd
+"""
+
+# Indentation matters in python, and it relays code structure to your python interpreter.
+# There are many different styles of indentation: nesting blocks of code with
+# 2 spaces, 4 spaces, or tabs. This script (and my preferred style) uses 4 spaces.
+# Use whatever style you'd like, but stay consistent!
+
 
 """
 ## (1) Library imports
-## Associated section: https://developers.google.com/edu/python/introduction
+## Associated reading: https://developers.google.com/edu/python/introduction
 """
+print '\n\n%s\n--------------------\n' % '(1) Library imports'
 import os  # One import per line
 import numpy as np  # The "as" keyword is an alias for the imported library. See below.
 from keras_demo import deep_dream  # Here we import the function deep_dream from the module keras_demo
 
 
 """
-## (2) Create a function
-## Associated section: https://developers.google.com/edu/python/introduction
+## (2) Create functions
+## Associated reading: https://developers.google.com/edu/python/introduction
 """
+print '\n\n%s\n--------------------\n' % '(2) Create functions'
+
 
 def main(name):
     """This is a Docstring for the function main, which prints hello world.
@@ -60,14 +73,28 @@ def main(name):
     return success
 
 
+def print_section(section):
+    """Print a message that labels a portion of code.
+
+    Parameters
+    ----------
+    name: section
+
+    Returns
+    ----------
+    (none): (none)
+    """
+    print '\n\n%s\n--------------------\n' % section
+
+
 # Run your function
 success = main('Mr. Roboto')
 
 """
 ## (3) Conditionals
-## Associated section: https://developers.google.com/edu/python/introduction
+## Associated reading: https://developers.google.com/edu/python/introduction
 """
-print( '\n\n(3) Conditionals\n--------------------\n' )
+print_section('(3) Conditionals')
 if success:  # If success is true:
     print 'I want to thank you, please, thank you!'
 else:  # Otherwise:
@@ -75,12 +102,12 @@ else:  # Otherwise:
 
 
 """
-## (4) Data types, associated sections:
+## (4) Data types, associated readings:
 ## a. https://developers.google.com/edu/python/strings
 ## b. https://developers.google.com/edu/python/lists
 ## c. https://developers.google.com/edu/python/dict-files
 """
-print( '\n\n(4) Data types, associated sections\n--------------------\n' )
+print_section('(4) Data types')
 # Strings
 i_am_a_string = 'I am the modern man'
 and_can_be_concatenated = i_am_a_string + ' (secret secret I\'ve got a secret).'
@@ -123,9 +150,10 @@ np_output = np.asarray(2 + 3., dtype=np.float32)  # Or use numpy to explicitly c
 
 
 """
-## (5) While loops and the special case for loops
-## Associated section: https://developers.google.com/edu/python/dict-files
+## (5) While loops and the special case of for loops
+## Associated reading: https://developers.google.com/edu/python/dict-files
 """
+print_section('(5) While loops and the special case of for loops')
 count = 0  # Int
 limit = 10  # Int
 while count < limit:  # While loop
@@ -145,11 +173,11 @@ dictionary_comprehension = {k: v for k, v in dicts_are_unordered_lookup_tables.i
 
 
 """
-## (6) Run a deep learning demo! It will take a while to download the data.
+## (6) Deep learning demo! It will take a while to download the data.
 """
-print( 'about to run deep_dream demo' )
+print_section('(6) Deep learning demo!')
 deep_dream.run_demo(
-        os.path.join(  # This produces a full file pointer to pretty_dog.jpg
-            'images',
-            'small_pretty_dog.jpg'),  # Feel free to change this image
-        output_file='dream_dog')
+    os.path.join(  # This produces a full file pointer to pretty_dog.jpg
+        'images',
+        'small_pretty_dog.jpg'),  # Feel free to change this image
+    output_file='dream_dog')
