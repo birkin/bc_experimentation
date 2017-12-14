@@ -59,7 +59,7 @@
 
 - top count...
 
-        python ./basic/solution/wordcount.py --topcount "/Users/birkin/Desktop/clps1950_stuff/CLPS1950_python/basic/alice.txt"
+        python ./basic/solution/wordcount_b.py --topcount "/Users/birkin/Desktop/clps1950_stuff/CLPS1950_python/basic/alice.txt"
 
 ---
 

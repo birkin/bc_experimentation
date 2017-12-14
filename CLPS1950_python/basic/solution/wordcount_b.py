@@ -45,6 +45,19 @@ import sys
 # and builds and returns a word/count dict for it.
 # Then print_words() and print_top() can just call the utility function.
 
+
+
+import logging, pprint
+
+logging.basicConfig(
+    # filename=LOG_PATH,
+    level=logging.DEBUG,  # logging.INFO/WARNING/ERROR
+    format='[%(asctime)s] %(levelname)s [%(module)s-%(funcName)s()::%(lineno)d] %(message)s',
+    datefmt='%d/%b/%Y %H:%M:%S' )
+log = logging.getLogger(__name__)
+log.debug( 'log configured' )
+
+
 #### LAB(begin solution)
 
 def word_count_dict(filename):
@@ -78,17 +91,43 @@ def get_count(word_count_tuple):
   return word_count_tuple[1]
 
 
-def print_top(filename):
-  """Prints the top count listing for the given file."""
-  word_count = word_count_dict(filename)
+# def print_top(filename):
+#   """Prints the top count listing for the given file."""
+#   word_count = word_count_dict(filename)
 
-  # Each item is a (word, count) tuple.
-  # Sort them so the big counts are first using key=get_count() to extract count.
-  items = sorted(word_count.items(), key=get_count, reverse=True)
+#   # Each item is a (word, count) tuple.
+#   # Sort them so the big counts are first using key=get_count() to extract count.
+#   items = sorted(word_count.items(), key=get_count, reverse=True)
 
-  # Print the first 20
-  for item in items[:20]:
-    print item[0], item[1]
+#   # Print the first 20
+#   for item in items[:20]:
+#     print item[0], item[1]
+
+
+def print_top( filepath ):
+    import operator
+    with open( filepath ) as f:
+        txt = f.read()
+    words = txt.split()
+    ## get counts
+    word_dct = {}
+    for word in words:
+        if word in word_dct.keys():
+            word_dct[word] +=1
+        else:
+            word_dct[word] = 1
+    ## sort on keys: https://stackoverflow.com/a/613218
+    sorted_by_val_lst_of_tuples = sorted(word_dct.items(), key=operator.itemgetter(1))
+    log.debug( 'sorted_by_val_lst_of_tuples, ```%s```' % pprint.pformat(sorted_by_val_lst_of_tuples) )
+    ## grab highest 20
+    start = len(sorted_by_val_lst_of_tuples) - 20
+    highest_tuples = sorted_by_val_lst_of_tuples[start:]
+    log.debug( 'highest_tuples, ```%s```' % pprint.pformat(highest_tuples) )
+    highest_tuples.reverse()
+    for entry in highest_tuples:
+        output = '%s -- %s' % (entry[0], entry[1])
+        print output
+    return
 
 ##### LAB(end solution)
 
