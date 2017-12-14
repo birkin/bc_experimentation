@@ -47,45 +47,6 @@ import sys
 
 ###
 
-
-def print_words( filepath ):
-    with open( filepath ) as f:
-        txt = f.read()
-    words = txt.split()
-    count = len( words )
-    print 'word count, `%s`' % count
-    return
-
-
-def print_top( filepath ):
-    import operator, pprint
-    with open( filepath ) as f:
-        txt = f.read()
-    words = txt.split()
-    ## get counts
-    word_dct = {}
-    for word in words:
-        if word in word_dct.keys():
-            word_dct[word] +=1
-        else:
-            word_dct[word] = 1
-    ## sort on keys: https://stackoverflow.com/a/613218
-    sorted_by_val_lst_of_tuples = sorted(word_dct.items(), key=operator.itemgetter(1))
-    print( 'sorted_by_val_lst_of_tuples, ```%s```' % pprint.pformat(sorted_by_val_lst_of_tuples) )
-    ## grab highest 20
-    start = len(sorted_by_val_lst_of_tuples) - 20
-    highest_tuples = sorted_by_val_lst_of_tuples[start:]
-    print( 'highest_tuples, ```%s```' % pprint.pformat(highest_tuples) )
-    ## make list of words
-    top_words = []
-    for word_tuple in highest_tuples:
-        top_words.append(word_tuple[0])
-    print( 'top_words, ```%s```' % pprint.pformat(top_words) )
-    top_words.reverse()
-    print( 'reverse_words, ```%s```' % pprint.pformat(top_words) )
-    return
-
-
 # This basic command line argument parsing code is provided and
 # calls the print_words() and print_top() functions which you must define.
 def main():
